@@ -2,6 +2,7 @@ from fastapi import FastAPI
 import uvicorn
 from enum import Enum
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
