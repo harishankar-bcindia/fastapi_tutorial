@@ -171,13 +171,13 @@ async def read_items_if_present_query(q: str | None = None):
 #         results = {**results,"q":q}
 #     return results
 
-from fastapi import FastAPI, Path
-@app.get("/items_using_kwargs_parameters/{item_id}")
-async def read_items_items_using_kwargs_parameters(*, item_id: int = Path(title="The ID of the item to get"), q: str):
-    results = {"item_id": item_id}
-    if q:
-        results = {**results,"q":q}
-    return results
+# from fastapi import FastAPI, Path
+# @app.get("/items_using_kwargs_parameters/{item_id}")
+# async def read_items_items_using_kwargs_parameters(*, item_id: int = Path(title="The ID of the item to get"), q: str):
+#     results = {"item_id": item_id}
+#     if q:
+#         results = {**results,"q":q}
+#     return results
 
 # @app.get("/items/{item_id}")
 # async def read_items(
