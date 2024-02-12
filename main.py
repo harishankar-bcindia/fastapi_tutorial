@@ -80,13 +80,13 @@ async def create_item(body: Item):
     body.price = round(body.price,2)
     return body
 
-@app.put("/items_body_and_path/{item_id}")
-async def update_item(item_id: int, body: Item):
-    return {"item_id": item_id, **body.dict()}
+# @app.put("/items_body_and_path/{item_id}")
+# async def update_item(item_id: int, body: Item):
+#     return {"item_id": item_id, **body.dict()}
 
-@app.put("/items_body_and_query_path/{item_id}")
-async def update_item_query_path_string(item_id: int, body: Item, module:str|None=None):
-    return {"item_id": item_id,"module":module, **body.dict()} # ** to unpack items of any dict
+# @app.put("/items_body_and_query_path/{item_id}")
+# async def update_item_query_path_string(item_id: int, body: Item, module:str|None=None):
+#     return {"item_id": item_id,"module":module, **body.dict()} # ** to unpack items of any dict
 
 class User(BaseModel):
     username: str
@@ -95,28 +95,28 @@ class User(BaseModel):
 from typing import Annotated
 from fastapi import Body, FastAPI
 
-@app.put("/items_two_body_class/{item_id}")
-async def update_item_to_bodies(
-    item_id: int, item: Item, user: User, importance: Annotated[int, Body()] = 5
-):
-    results = {"item_id": item_id, "item": item, "user": user, "importance": importance}
-    '''
-    body_example =
-                    {
-                    "item": {
-                        "name": "Foo",
-                        "description": "The pretender",
-                        "price": 42.0,
-                        "tax": 3.2
-                    },
-                    "user": {
-                        "username": "dave",
-                        "full_name": "Dave Grohl"
-                    },
-                    "importance": 8
-                    }
-    '''
-    return results
+# @app.put("/items_two_body_class/{item_id}")
+# async def update_item_to_bodies(
+#     item_id: int, item: Item, user: User, importance: Annotated[int, Body()] = 5
+# ):
+#     results = {"item_id": item_id, "item": item, "user": user, "importance": importance}
+#     '''
+#     body_example =
+#                     {
+#                     "item": {
+#                         "name": "Foo",
+#                         "description": "The pretender",
+#                         "price": 42.0,
+#                         "tax": 3.2
+#                     },
+#                     "user": {
+#                         "username": "dave",
+#                         "full_name": "Dave Grohl"
+#                     },
+#                     "importance": 8
+#                     }
+#     '''
+#     return results
 
 @app.get("/items_update_q_if_present/")
 async def read_items_if_present_query(q: str | None = None):
