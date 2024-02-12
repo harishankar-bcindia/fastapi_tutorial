@@ -125,14 +125,14 @@ async def read_items_if_present_query(q: str | None = None):
         results = {**results,"q":q}
     return results
 
-from fastapi import FastAPI, Query
-@app.get("/items_query_length_not_exceed_limit/")
-async def read_items_within_limit_of_query(q: Annotated[str | None, Query(max_length=50)] = None):
-    results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
-    if q:
-        results = {**results,"q":q}
-    return results
-
+# from fastapi import FastAPI, Query
+# @app.get("/items_query_length_not_exceed_limit/")
+# async def read_items_within_limit_of_query(q: Annotated[str | None, Query(max_length=50)] = None):
+#     results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
+#     if q:
+#         results = {**results,"q":q}
+#     return results
+# 
 # @app.get("/items_using_ellipsis_to_make_query_mandatory/")
 # async def read_items_uisng_ellipsis(q: Annotated[str, Query(min_length=3)] = ...):
 #     results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
@@ -141,35 +141,35 @@ async def read_items_within_limit_of_query(q: Annotated[str | None, Query(max_le
 #     return results
 
 
-@app.get("/items_list_of_multiple_item_as_parameter/")
-async def read_items_list_of_items(q: Annotated[list[str] | None, Query()] = None):
-    '''
-    query_params = ?q=foo&q=bar
-    '''
-    query_items = {"q": q}
-    return query_items
+# @app.get("/items_list_of_multiple_item_as_parameter/")
+# async def read_items_list_of_items(q: Annotated[list[str] | None, Query()] = None):
+#     '''
+#     query_params = ?q=foo&q=bar
+#     '''
+#     query_items = {"q": q}
+#     return query_items
 
-@app.get("/items_read_items_list_of_default_items_/")
-async def read_items_list_of_default_items_(q: Annotated[list[str], Query()] = ["foo", "bar"]):
-    query_items = {"q": q}
-    return query_items
+# @app.get("/items_read_items_list_of_default_items_/")
+# async def read_items_list_of_default_items_(q: Annotated[list[str], Query()] = ["foo", "bar"]):
+#     query_items = {"q": q}
+#     return query_items
 
 
-@app.get("/items_title_desc/")
-async def read_items_items_title_desc(
-    q: Annotated[
-        str | None,
-        Query(
-            title="Query string",
-            description="Query string for the items to search in the database that have a good match",
-            min_length=3,
-        ),
-    ] = None,
-):
-    results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
-    if q:
-        results = {**results,"q":q}
-    return results
+# @app.get("/items_title_desc/")
+# async def read_items_items_title_desc(
+#     q: Annotated[
+#         str | None,
+#         Query(
+#             title="Query string",
+#             description="Query string for the items to search in the database that have a good match",
+#             min_length=3,
+#         ),
+#     ] = None,
+# ):
+#     results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
+#     if q:
+#         results = {**results,"q":q}
+#     return results
 
 from fastapi import FastAPI, Path
 @app.get("/items_using_kwargs_parameters/{item_id}")
@@ -179,20 +179,20 @@ async def read_items_items_using_kwargs_parameters(*, item_id: int = Path(title=
         results = {**results,"q":q}
     return results
 
-@app.get("/items/{item_id}")
-async def read_items(
-    item_id: Annotated[int, Path(title="The ID of the item to get", ge=1)], q: str
-):
-    '''
-    gt: greater than
-    le: less than or equal
-    ge: greater than or equal
-    lt: less than
-    '''
-    results = {"item_id": item_id}
-    if q:
-        results = {**results,"q":q}
-    return results
+# @app.get("/items/{item_id}")
+# async def read_items(
+#     item_id: Annotated[int, Path(title="The ID of the item to get", ge=1)], q: str
+# ):
+#     '''
+#     gt: greater than
+#     le: less than or equal
+#     ge: greater than or equal
+#     lt: less than
+#     '''
+#     results = {"item_id": item_id}
+#     if q:
+#         results = {**results,"q":q}
+#     return results
 
 
 
